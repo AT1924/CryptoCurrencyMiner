@@ -1,25 +1,24 @@
-There are no known bugs in our code.
 
-We did not implement any extra features.
 
-We created tests for the following cases:
 
-    Test Coverage = 86.9%
+    
+    This project is a distributed mock cryptocurrency miner. The system utilizes three main components the client, the pool, and the miner.
+    In order to simulate cryptocurrency mining on initialization of a call to start mining, the client passes the pool an integer upperbound, and a data string.
+    Then each integer [0, upperbound] is hashed with the data string. The integer in the set [0,upperbound] that hashes to the smallest value will be our found
+    nonce that we then will pass back to the client in a proofOfWorkMessage. In order to support concurrent work and speed up execution the set [0,upperbound]
+    is broken into intervals that represent jobs, which are then assigned to singular miners. Each miner finds the nonce with the smallest hash value in its
+    interval and returns it in a proofOfWorkMessage. Once all jobs are complete we can simply select the nonce with the smallest hash value out of all the
+    returned nonces, and return this to the client.
+    
+    On initial Download Run In Project Directory:
+    "go get -u ./..."
+    
+    The project includes a comprehensive correctness and benchmark test suite. In order to run the tests,
+    
+    "cd test"
+    "go test -coverprofile=coverage.out -coverpkg=liteminer/pkg"
+    
 
-    In basic_test.go we test the complete functionality of the program in simple and hard tests indicated by the
-    the given upperbound and number of miners. The more comprehensive tests here mine with a much larger upperbound.
-    We also have created test files for Client, Pool, and Miner error handling and functionality.
-
-    Client: In client_test we perform pool-client connection tests as well as client functionality testing
-
-    Miner: In miner_test we test the miner-pool connection to ensure that the pool correctly handles our miners
-    as well as correctly delegate information received from them.
-
-    Pool: Since the majority of written logic is located in pool.go we made sure to create robust test cases for
-    pool_test.go. We initially test poolside client/miner connection error handling as well as pool mining functionality
-    given certain errors. We test busy pool connections, duplicate ports, disconnection errors and bad messages.
-
-    We also include benchmark testing to test mining performance.
 
 
 

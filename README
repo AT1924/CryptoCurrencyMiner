@@ -1,0 +1,25 @@
+There are no known bugs in our code.
+
+We did not implement any extra features.
+
+We created tests for the following cases:
+
+    Test Coverage = 86.9%
+
+    In basic_test.go we test the complete functionality of the program in simple and hard tests indicated by the
+    the given upperbound and number of miners. The more comprehensive tests here mine with a much larger upperbound.
+    We also have created test files for Client, Pool, and Miner error handling and functionality.
+
+    Client: In client_test we perform pool-client connection tests as well as client functionality testing
+
+    Miner: In miner_test we test the miner-pool connection to ensure that the pool correctly handles our miners
+    as well as correctly delegate information received from them.
+
+    Pool: Since the majority of written logic is located in pool.go we made sure to create robust test cases for
+    pool_test.go. We initially test poolside client/miner connection error handling as well as pool mining functionality
+    given certain errors. We test busy pool connections, duplicate ports, disconnection errors and bad messages.
+
+    We also include benchmark testing to test mining performance.
+
+
+
